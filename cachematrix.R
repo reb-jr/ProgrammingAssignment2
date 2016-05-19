@@ -1,7 +1,17 @@
 ## Put comments here that give an overall description of what your
 ## functions do
+#
+# makeCacheMatrix() 
+#    creates a container (list) to hold a matrix and it's  
+#    inverse  (which it caches when set)
+#
+# cacheSolve()
+#    1. accepts a list-container created by "makeCacheMatrix()"
+#    2. if the inverse has not already been solved, computes and caches the inverse
+#    3. returns the cached inverse
 
-## returns a list containing setters and getters for both the original matrix ('x') and the inverted matrix
+## returns a list containing setters and getters for both the original 
+## matrix ('x') and the inverted matrix
 ## caches the inverted matrix 
 makeCacheMatrix <- function(x = matrix()) {
      cachedInvertedMatrix <- NULL
@@ -25,11 +35,23 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Returns the inverted matrix from 'x', generating and caching first when it's not already cached
+## Returns the inverted matrix from 'x', generating and caching first when it's 
+## not already cached
 ##
 ## 'x' must be a list created by calling 'makeCacheMatrix()'
 ##
 cacheSolve <- function(x, ...) {
+     
+     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     # NOTICE:
+     #    I've changed this a bit from the example code so that it always
+     #    returns the cached version of the inverse matrix, populating it
+     #    if it's not set
+     #
+     #    I like this better, sorry if it is at all confusing
+     #
+     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     
      #check if the inverted matrix is already cached
      if(is.null(x$getInverse())){
           print('     not cached yet, solving and loading cache')
@@ -41,10 +63,16 @@ cacheSolve <- function(x, ...) {
      }
      
      print('     returning cached version')
-     #return the cached invertedMatrix
+     #always return the cached invertedMatrix
      x$getInverse()
 }
 
+################################################################################
+# 
+# you can ignore the rest, just a test function I created to ensure that it runs
+# properly
+# 
+################################################################################
 ##function to test the functions above
 # testCachedMatrix <- function(){
 #      generateInvertableMatrix <- function(size,seed){
